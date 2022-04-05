@@ -1,0 +1,21 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    {{ entry_title_h1 }}
+{% endblock %}
+
+{% block body %}
+    {% if alert %}
+    <div class="alert alert-danger h4 m-3 text-center" role="alert"><h1>{{ alert }}</h1></div>
+    {% endif %}
+
+    <div class="container row text-center mt-3">
+        <form method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" class="btn btn-primary m-2" value="Submit">
+        </form> 
+    </div>
+    
+
+{% endblock %}

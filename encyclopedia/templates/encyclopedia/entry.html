@@ -5,7 +5,12 @@
 {% endblock %}
 
 {% block body %}
-
+    {% if not_found %}
+    <div class="alert alert-danger h4 m-3 text-center" role="alert"><h1>{{ not_found }}</h1></div>
+    {% else %}
+    <a href="{% url 'encyclopedia:edit' entry_title_h1 %}">Edit Page</a>
     {{ entry_text | safe }}
+    {% endif %}
+    
 
 {% endblock %}

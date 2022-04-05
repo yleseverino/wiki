@@ -1,22 +1,6 @@
-from cgitb import html
 import re
 
 def mk2html(markdown_text):
-    '''Returns the first <h1> found in the markdown text without the tags and the whole markdown text converted in HTML.'''
-    html_text = convert_text(markdown_text)
-
-    # Get the first h1 title    
-    try:
-        h1 = re.search(r'(?s)<h1>(.+?)<\/h1>', html_text).group(1)
-    except AttributeError:
-        h1 = "Without title"
-    
-    print(h1)
-
-    return h1, html_text
-
-
-def convert_text(markdown_text):
     'A function the performs a change from Markdown to HTML'
 
     
@@ -26,7 +10,6 @@ def convert_text(markdown_text):
     Mor information in https://en.wikipedia.org/wiki/Newline
     '''
     html = markdown_text.replace('\r','') 
-
     html = convert_bolds_mk_to_html(html)
     html = convert_headings_mk_to_html(html)
     html = convert_anchors_mk_to_html(html)
@@ -53,7 +36,7 @@ def convert_anchors_mk_to_html(mk):
     '''Get the Headings in Markdown and convert to HTML'''
     return re.sub(
                     pattern = r"[\[]([^\[]+)[\]][\(]([^)]+)[\)]",                                                                               
-                    repl = lambda matchobj : f'<a href="{matchobj.group(2)}>{matchobj.group(1)}</a>',     
+                    repl = lambda matchobj : f'<a href="{matchobj.group(2)}">{matchobj.group(1)}</a>',     
                     string = mk                                                                                               
                     )
 
